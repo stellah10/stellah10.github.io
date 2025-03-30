@@ -2135,8 +2135,8 @@ input, select, textarea {
 
 		.image.avatar {
 			/* border-radius: 100%; */
-			width: 10em !important; /* Increase the container size */
-			height: 10em !important; /* Ensure it expands proportionally */
+			width: 15em !important; /* Increase the container size */
+			height: 15em !important; /* Ensure it expands proportionally */
 		}
 
 			.image.avatar:before {
