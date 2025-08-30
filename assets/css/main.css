@@ -2035,6 +2035,36 @@ input, select, textarea {
 			font-family: 'Font Awesome 5 Brands';
 		}
 
+/* Gallery */
+	.photo-gallery {
+		position: relative;
+		max-width: 100%;
+		height: 500px;            /* pick a height you want */
+		overflow: hidden;
+		background-color: #eee;   /* fallback color */
+	}
+
+	.gallery-slide {
+		display: none;            /* hide all slides by default */
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.gallery-slide.active {
+		display: block;           /* only the active slide is shown */
+	}
+
+	.gallery-slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;        /* fill the box without distortion */
+		display: block;
+	}
+
+
 /* Image */
 
 	.image {
