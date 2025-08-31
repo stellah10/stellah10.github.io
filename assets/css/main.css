@@ -2034,35 +2034,7 @@ input, select, textarea {
 		.icon.brands:before {
 			font-family: 'Font Awesome 5 Brands';
 		}
-
-/* Gallery */
-	.photo-gallery {
-		position: relative;
-		max-width: 100%;
-		height: 500px;            /* pick a height you want */
-		overflow: hidden;
-		background-color: #eee;   /* fallback color */
-	}
-
-	.gallery-slide {
-		display: none;            /* hide all slides by default */
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.gallery-slide.active {
-		display: block;           /* only the active slide is shown */
-	}
-
-	.gallery-slide img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;        /* fill the box without distortion */
-		display: block;
-	}
+	
 
 
 /* Image */
@@ -2725,6 +2697,7 @@ input, select, textarea {
 		opacity: 1;
 		transform: translateY(0);
 	}
+
 /* Main */
 
 	#main {
@@ -3002,6 +2975,36 @@ input, select, textarea {
 			.poptrox-popup:hover .closer:hover {
 				opacity: 1.0;
 			}
+
+		
+/* Gallery */
+	.photo-gallery {
+		position: relative;
+		max-width: 100%;
+		height: 500px;            /* pick a height you want */
+		overflow: hidden;
+		background-color: #eee;   /* fallback color */
+	}
+
+	.gallery-slide {
+		display: none;            /* hide all slides by default */
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.gallery-slide.active {
+		display: block;           /* only the active slide is shown */
+	}
+
+	.gallery-slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;        /* fill the box without distortion */
+		display: block;
+	}
 
 /* Touch */
 

@@ -140,31 +140,28 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
         }
 
         .photo-gallery {
-            position: relative;
-            width: 250px;
-            height: 250px;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: slideUp 1s ease 0.3s forwards;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
         .gallery-container {
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-container:hover {
-            transform: scale(1.05);
-            border-color: var(--accent-color);
+            /* Remove any background that might interfere */
+            background: transparent;
         }
 
         .gallery-slide {
@@ -174,7 +171,9 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
+            /* Ensure no background interference */
+            background: transparent;
         }
 
         .gallery-slide.active {
@@ -188,70 +187,89 @@
             display: block;
         }
 
+        /* Fallback placeholder when images don't load */
         .gallery-placeholder {
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(76, 29, 149, 0.8) 0%, rgba(124, 58, 237, 0.8) 50%, rgba(168, 85, 247, 0.8) 100%);
             backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             text-align: center;
-            padding: 2rem;
-            font-size: 0.95rem;
-            line-height: 1.4;
+            padding: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         .gallery-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.7;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-placeholder strong {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-placeholder span {
+            opacity: 0.9;
+            font-size: 1.2rem;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
         }
 
         .gallery-indicators {
             position: absolute;
-            bottom: 15px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 8px;
+            gap: 12px;
             z-index: 10;
         }
 
         .indicator {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.6);
             cursor: pointer;
             transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
         .indicator.active {
             background: var(--accent-color);
-            transform: scale(1.2);
+            transform: scale(1.3);
+            border-color: white;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
         }
 
         .gallery-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             transition: all 0.3s ease;
             z-index: 10;
             opacity: 0;
+            backdrop-filter: blur(5px);
         }
 
         .gallery-container:hover .gallery-nav {
@@ -261,27 +279,30 @@
         .gallery-nav:hover {
             background: rgba(0, 0, 0, 0.8);
             transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .gallery-nav.prev {
-            left: 10px;
+            left: 30px;
         }
 
         .gallery-nav.next {
-            right: 10px;
+            right: 30px;
         }
 
         .gallery-counter {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 30px;
+            right: 30px;
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
             z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .hero h1 {
@@ -302,7 +323,6 @@
         .hero .university {
             font-size: clamp(1rem, 2vw, 1.2rem);
             margin-bottom: 2rem;
-            opacity: 0.9;
             opacity: 0;
             animation: slideUp 1s ease 0.8s forwards;
         }
@@ -311,7 +331,6 @@
             font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto 2rem;
-            opacity: 0.9;
             opacity: 0;
             animation: slideUp 1s ease 1s forwards;
         }
@@ -970,22 +989,6 @@
             from {
                 opacity: 0;
                 transform: translateY(50px);
-            .university-header {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                text-align: center;
-            }
-
-            .gpa-badge {
-                margin: 0 auto;
-            }
-
-            .honors-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .coursework-grid {
-                grid-template-columns: 1fr;
             }
             to {
                 opacity: 1;
@@ -1030,13 +1033,6 @@
                 margin-bottom: 1.5rem;
             }
 
-            .profile-image,
-            .profile-placeholder {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 1.5rem;
-            }
-
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -1068,6 +1064,24 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+
+            .university-header {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .gpa-badge {
+                margin: 0 auto;
+            }
+
+            .honors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .coursework-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1086,13 +1100,6 @@
             .photo-gallery {
                 width: 140px;
                 height: 140px;
-                margin-bottom: 1rem;
-            }
-
-            .profile-image,
-            .profile-placeholder {
-                width: 120px;
-                height: 120px;
                 margin-bottom: 1rem;
             }
 
@@ -1125,61 +1132,82 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+       <!-- Photo Gallery Banner -->
+    <section class="photo-gallery-banner">
+        <div class="gallery-container">
+            <!-- Photo slides -->
+            <div class="gallery-slide active">
+                <img src="images/LinkedIn_Headshot.jpg" alt="Professional Headshot" onerror="this.parentNode.innerHTML='<div class=gallery-placeholder><i class=fas fa-user-circle></i><strong>Professional Headshot</strong><span>LinkedIn Profile Photo</span></div>';">
+            </div>
+            <div class="gallery-slide">
+                <img src="images/NFR24_Side_Panels.jpg" alt="Formula Racing" onerror="this.parentNode.innerHTML='<div class=gallery-placeholder><i class=fas fa-car-side></i><strong>Formula Racing</strong><span>Working on NFR24 Side Panels</span></div>';">
+            </div>
+            <div class="gallery-slide">
+                <img src="images/NFR25_Cost_Event.jpg" alt="Competition" onerror="this.parentNode.innerHTML='<div class=gallery-placeholder><i class=fas fa-trophy></i><strong>Competition</strong><span>NFR25 Cost Event</span></div>';">
+            </div>
+            <div class="gallery-slide">
+                <img src="images/NFR25_Design_Judge.JPG" alt="Design Judge" onerror="this.parentNode.innerHTML='<div class=gallery-placeholder><i class=fas fa-handshake></i><strong>Design Judge</strong><span>NFR25 Design Presentation</span></div>';">
+            </div>
+            <div class="gallery-slide">
+                <img src="images/NFR25_Team_Photo.jpg" alt="Team Photo" onerror="this.parentNode.innerHTML='<div class=gallery-placeholder><i class=fas fa-users></i><strong>Team Photo</strong><span>NFR25 Team</span></div>';">
+            </div>
+            <div class="gallery-slide">
+                <img src="images/Unveil.JPG" alt="Car Unveil" onerror="this.parentNode.innerHTML='<div class=gallery-placeholder><i class=fas fa-eye></i><strong>Car Unveil</strong><span>NFR25 Car Reveal</span></div>';">
+            </div>
+            <div class="gallery-slide">
+                <img src="images/Walking_NFR25.jpg" alt="Track Walk" onerror="this.parentNode.innerHTML='<div class=gallery-placeholder><i class=fas fa-walking></i><strong>Track Walk</strong><span>Walking NFR25</span></div>';">
+            </div>
+
+            <!-- Navigation arrows -->
+            <button class="gallery-nav prev" onclick="changeSlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="gallery-nav next" onclick="changeSlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Slide indicators -->
+            <div class="gallery-indicators">
+                <div class="indicator active" onclick="currentSlide(1)"></div>
+                <div class="indicator" onclick="currentSlide(2)"></div>
+                <div class="indicator" onclick="currentSlide(3)"></div>
+                <div class="indicator" onclick="currentSlide(4)"></div>
+                <div class="indicator" onclick="currentSlide(5)"></div>
+                <div class="indicator" onclick="currentSlide(6)"></div>
+                <div class="indicator" onclick="currentSlide(7)"></div>
+            </div>
+
+            <!-- Photo counter -->
+            <div class="gallery-counter">
+                <span id="current-photo">1</span> / <span id="total-photos">7</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <!-- Photo Gallery -->
-                <div class="photo-gallery">
-                    <div class="gallery-container">
-                        <!-- Photo slides - Add your photos here -->
-                        <div class="gallery-slide active">
-                            <img src="images/LinkedIn_Headshot.jpg" alt="Maristella Heo - Professional Photo" >
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/NFR24_Side_Panels.jpg" alt="Maristella Heo - Formula Racing" >
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/NFR25_Cost_Event.jpg" alt="Maristella Heo - Engineering Project" >
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/NFR25_Design_Judge.JPG" alt="Maristella Heo - Northwestern University" >
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/NFR25_Team_Photo.jpg" alt="Maristella Heo - Robotics Work" >
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/Unveil.JPG" alt="Maristella Heo - Robotics Work" >
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/Walking_NFR25.jpg" alt="Maristella Heo - Robotics Work" >
-                        </div>
-
-
-                        <!-- Navigation arrows -->
-                        <button class="gallery-nav prev" onclick="changeSlide(-1)">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="gallery-nav next" onclick="changeSlide(1)">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-
-                        <!-- Slide indicators -->
-                        <div class="gallery-indicators">
-                            <div class="indicator active" onclick="currentSlide(1)"></div>
-                            <div class="indicator" onclick="currentSlide(2)"></div>
-                            <div class="indicator" onclick="currentSlide(3)"></div>
-                            <div class="indicator" onclick="currentSlide(4)"></div>
-                            <div class="indicator" onclick="currentSlide(5)"></div>
-                            <div class="indicator" onclick="currentSlide(6)"></div>
-                            <div class="indicator" onclick="currentSlide(7)"></div>
-                        </div>
-
-                        <!-- Photo counter -->
-                        <div class="gallery-counter">
-                            <span id="current-photo">1</span> / <span id="total-photos">5</span>
-                        </div>
-                    </div>
+                <h1>Maristella (Stella) Heo</h1>
+                <p class="subtitle">Mechanical Engineering Student</p>
+                <p class="university">Northwestern University • 3.99 GPA • Dean's List</p>
+                <p class="description">Passionate undergraduate engineer with expertise in Formula SAE racing, robotics, manufacturing automation, and AI-powered solutions. From leading 75+ member teams to developing cutting-edge robotic systems, I drive innovation through hands-on engineering excellence.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn">
+                        <i class="fas fa-rocket"></i>
+                        View My Projects
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
                 </div>
-                
+            </div>
+        </div>
+    </section>
+
+        <div class="container">
+            <div class="hero-content">
                 <h1>Maristella (Stella) Heo</h1>
                 <p class="subtitle">Mechanical Engineering Student</p>
                 <p class="university">Northwestern University • 3.99 GPA • Dean's List</p>
@@ -1474,6 +1502,7 @@
             </div>
         </div>
     </section>
+
     <!-- Experience Section -->
     <section class="experience" id="experience">
         <div class="container">
@@ -1568,8 +1597,6 @@
             </div>
         </div>
     </section>
-
-    
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
